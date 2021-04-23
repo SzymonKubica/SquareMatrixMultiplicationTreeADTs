@@ -1,8 +1,10 @@
 import static org.junit.Assert.assertEquals;
 
 import collections.CompactWordsSet;
+import collections.FineGrainedCompactWordTree;
 import collections.SimpleCompactWordTree;
 import collections.exceptions.InvalidWordException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -11,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.IntStream;
+
 import org.junit.Test;
 
 public class StressTest {
@@ -20,7 +23,7 @@ public class StressTest {
   private static final int NUM_THREADS = 8;
 
   private static final ArrayList<String> manyValidStrings =
-      generateRandomStrings(NUM_TEST_STRINGS, MAX_STRING_LENGTH);
+          generateRandomStrings(NUM_TEST_STRINGS, MAX_STRING_LENGTH);
   private static final Set<String> uniqueTestWords = new HashSet<>(manyValidStrings);
 
   {
@@ -53,7 +56,7 @@ public class StressTest {
   @Test
   public void stressTestWithManyOperations() {
     // This test *may* help spotting race conditions
-    final CompactWordsSet wordsSet = new SimpleCompactWordTree();
+    final FineGrainedCompactWordTree wordsSet = new FineGrainedCompactWordTree();
     final Thread[] threads = new Thread[NUM_THREADS];
 
     final long startTime = System.currentTimeMillis();
@@ -101,7 +104,7 @@ public class StressTest {
     // You can use this method to see how the performance change with the number of threads.
     // Rememeber that too many threads may increase contention and, in turn, slow down performance
     IntStream.range(1, NUM_THREADS + 1).forEach(nt ->
-        performanceTestWithNThreads(nt)
+            performanceTestWithNThreads(nt)
     );
   }
 
@@ -116,7 +119,7 @@ public class StressTest {
         final int segmentLength = manyValidStrings.size() / numThreads;
         final int indexFromInclusive = t * (segmentLength + 1);
         final int indexToExclusive = Math
-            .min((t + 1) * (segmentLength + 1), manyValidStrings.size());
+                .min((t + 1) * (segmentLength + 1), manyValidStrings.size());
 
         IntStream.range(indexFromInclusive, indexToExclusive).forEach(i -> {
           try {
@@ -147,7 +150,7 @@ public class StressTest {
     checkResult(wordsSet);
 
     System.out.println(
-        "Operation with " + numThreads + " threads completed in " + (endTime - startTime) + " ms");
+            "Operation with " + numThreads + " threads completed in " + (endTime - startTime) + " ms");
   }
 
   private void checkResult(CompactWordsSet wordsSet) {
@@ -155,9 +158,9 @@ public class StressTest {
     Set<String> uniqueCollectedWordsAsSet = new HashSet<>(uniqueCollectedWords);
 
     assertEquals("The CompactWordSet contains duplicates", uniqueCollectedWords.size(),
-        uniqueCollectedWordsAsSet.size());
+            uniqueCollectedWordsAsSet.size());
     assertEquals("The CompactWordSet contains an unexpected set of words", uniqueTestWords,
-        uniqueCollectedWordsAsSet);
+            uniqueCollectedWordsAsSet);
   }
 
 }
