@@ -8,10 +8,12 @@ import generalmatrices.matrix.Matrix;
 import generalmatrices.operators.RingElement;
 import generalmatrices.pair.Pair;
 import generalmatrices.pair.PairWithOperators;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream; // Unused, but here to ensure that Java 8 or higher is used.
+
 import org.junit.Test;
 
 public class Tests {
@@ -20,17 +22,17 @@ public class Tests {
   public void testQuestion1() {
 
     final Matrix<String> stringMatrix = new Matrix<>(
-          Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i"));
+            Arrays.asList("a", "b", "c", "d", "e", "f", "g", "h", "i"));
 
     final Matrix<Integer> integerMatrix = new Matrix<>(
-          Arrays.asList(1, 2, 3, 4));
+            Arrays.asList(1, 2, 3, 4));
 
     final Matrix<Matrix<Integer>> integerMatrixMatrix = new Matrix<>(
-          Arrays.asList(
-                new Matrix<>(Arrays.asList(1, 2, 3, 4)),
-                new Matrix<>(Arrays.asList(2, 3, 4, 1)),
-                new Matrix<>(Arrays.asList(3, 4, 1, 2)),
-                new Matrix<>(Arrays.asList(4, 1, 2, 3))));
+            Arrays.asList(
+                    new Matrix<>(Arrays.asList(1, 2, 3, 4)),
+                    new Matrix<>(Arrays.asList(2, 3, 4, 1)),
+                    new Matrix<>(Arrays.asList(3, 4, 1, 2)),
+                    new Matrix<>(Arrays.asList(4, 1, 2, 3))));
 
     assertEquals("f", stringMatrix.get(1, 2));
     assertEquals(Integer.valueOf(4), integerMatrix.get(1, 1));
@@ -44,7 +46,7 @@ public class Tests {
     try {
       new Matrix<>(new ArrayList<>());
       throw new RuntimeException("Expected IllegalArgumentException on attempt to create "
-            + "empty matrix");
+              + "empty matrix");
     } catch (IllegalArgumentException exception) {
       // Good: exception should be thrown
     }
@@ -52,23 +54,21 @@ public class Tests {
     assertEquals("[[a b c][d e f][g h i]]", stringMatrix.toString());
     assertEquals("[[1 2][3 4]]", integerMatrix.toString());
     assertEquals("[[[[1 2][3 4]] [[2 3][4 1]]][[[3 4][1 2]] [[4 1][2 3]]]]",
-          integerMatrixMatrix.toString());
+            integerMatrixMatrix.toString());
 
   }
 
-  /*
   @Test
   public void testQuestion2() {
     final PairWithOperators p1 = new PairWithOperators(2, 3);
     final PairWithOperators p2 = new PairWithOperators(4, 5);
     assertTrue(p1 instanceof Pair);
     assertTrue(p1 instanceof RingElement);
-    assertEquals(new Integer(6), p1.sum(p2).getCoordX());
-    assertEquals(new Integer(8), p1.sum(p2).getCoordY());
-    assertEquals(new Integer(8), p1.product(p2).getCoordX());
-    assertEquals(new Integer(15), p1.product(p2).getCoordY());
+    assertEquals(Integer.valueOf(6), p1.sum(p2).getCoordX());
+    assertEquals(Integer.valueOf(8), p1.sum(p2).getCoordY());
+    assertEquals(Integer.valueOf(8), p1.product(p2).getCoordX());
+    assertEquals(Integer.valueOf(15), p1.product(p2).getCoordY());
   }
-  */
 
   /*
   @Test
