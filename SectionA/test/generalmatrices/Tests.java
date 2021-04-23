@@ -117,7 +117,6 @@ public class Tests {
 
   }
 
-  /*
   @Test
   public void testQuestion4() {
 
@@ -131,18 +130,17 @@ public class Tests {
       pairMatrices.add(new Matrix<>(firstPairs));
     }
     final Matrix<PairWithOperators> productOfPairMatrices = Example
-          .multiplyPairMatrices(pairMatrices);
-    assertEquals(new Integer(2416), productOfPairMatrices.get(0, 0).getCoordX());
-    assertEquals(new Integer(-2416), productOfPairMatrices.get(0, 0).getCoordY());
-    assertEquals(new Integer(2889), productOfPairMatrices.get(0, 1).getCoordX());
-    assertEquals(new Integer(-2889), productOfPairMatrices.get(0, 1).getCoordY());
-    assertEquals(new Integer(9424), productOfPairMatrices.get(1, 0).getCoordX());
-    assertEquals(new Integer(-9424), productOfPairMatrices.get(1, 0).getCoordY());
-    assertEquals(new Integer(11269), productOfPairMatrices.get(1, 1).getCoordX());
-    assertEquals(new Integer(-11269), productOfPairMatrices.get(1, 1).getCoordY());
+            .multiplyPairMatrices(pairMatrices);
+    assertEquals(Integer.valueOf(2416), productOfPairMatrices.get(0, 0).getCoordX());
+    assertEquals(Integer.valueOf(-2416), productOfPairMatrices.get(0, 0).getCoordY());
+    assertEquals(Integer.valueOf(2889), productOfPairMatrices.get(0, 1).getCoordX());
+    assertEquals(Integer.valueOf(-2889), productOfPairMatrices.get(0, 1).getCoordY());
+    assertEquals(Integer.valueOf(9424), productOfPairMatrices.get(1, 0).getCoordX());
+    assertEquals(Integer.valueOf(-9424), productOfPairMatrices.get(1, 0).getCoordY());
+    assertEquals(Integer.valueOf(11269), productOfPairMatrices.get(1, 1).getCoordX());
+    assertEquals(Integer.valueOf(-11269), productOfPairMatrices.get(1, 1).getCoordY());
 
   }
-  */
 
 
 }
