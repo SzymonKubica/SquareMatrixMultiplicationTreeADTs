@@ -16,7 +16,6 @@ import org.junit.Test;
 
 public class Tests {
 
-  /*
   @Test
   public void testQuestion1() {
 
@@ -34,8 +33,8 @@ public class Tests {
                 new Matrix<>(Arrays.asList(4, 1, 2, 3))));
 
     assertEquals("f", stringMatrix.get(1, 2));
-    assertEquals(new Integer(4), integerMatrix.get(1, 1));
-    assertEquals(new Integer(1), integerMatrixMatrix.get(1, 1).get(0, 1));
+    assertEquals(Integer.valueOf(4), integerMatrix.get(1, 1));
+    assertEquals(Integer.valueOf(1), integerMatrixMatrix.get(1, 1).get(0, 1));
 
     assertEquals(3, stringMatrix.getOrder());
     assertEquals(2, integerMatrix.getOrder());
@@ -43,7 +42,7 @@ public class Tests {
     assertEquals(2, integerMatrixMatrix.get(0, 0).getOrder());
 
     try {
-      new Matrix<Integer>(new ArrayList<Integer>());
+      new Matrix<>(new ArrayList<>());
       throw new RuntimeException("Expected IllegalArgumentException on attempt to create "
             + "empty matrix");
     } catch (IllegalArgumentException exception) {
@@ -56,7 +55,6 @@ public class Tests {
           integerMatrixMatrix.toString());
 
   }
-  */
 
   /*
   @Test
