@@ -17,7 +17,7 @@ public class SimpleCompactWordTree implements CompactWordsSet {
   }
 
   @Override
-  public boolean add(String word) throws InvalidWordException {
+  public synchronized boolean add(String word) throws InvalidWordException {
     CompactWordsSet.checkIfWordIsValid(word);
 
     WordTreeNode current = root;
@@ -43,7 +43,7 @@ public class SimpleCompactWordTree implements CompactWordsSet {
   }
 
   @Override
-  public boolean remove(String word) throws InvalidWordException {
+  public synchronized boolean remove(String word) throws InvalidWordException {
     CompactWordsSet.checkIfWordIsValid(word);
     WordTreeNode current = root;
     int wordPointer = 0;
@@ -67,7 +67,7 @@ public class SimpleCompactWordTree implements CompactWordsSet {
   }
 
   @Override
-  public boolean contains(String word) throws InvalidWordException {
+  public synchronized boolean contains(String word) throws InvalidWordException {
     CompactWordsSet.checkIfWordIsValid(word);
 
     WordTreeNode current = root;
@@ -87,7 +87,7 @@ public class SimpleCompactWordTree implements CompactWordsSet {
   }
 
   @Override
-  public int size() {
+  public synchronized int size() {
     return size;
   }
 
