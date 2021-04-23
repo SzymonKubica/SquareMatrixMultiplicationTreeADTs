@@ -1,6 +1,8 @@
 package generalmatrices.matrix;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.function.BinaryOperator;
 
 public class Matrix<T> {
   private final int order;
@@ -32,6 +34,43 @@ public class Matrix<T> {
 
   public int getOrder() {
     return order;
+  }
+
+  public Matrix<T> sum(Matrix<T> other, BinaryOperator<T> elementSum) {
+    List<T> resultingListOfSums = new LinkedList<>();
+    for (int i = 0; i < getOrder(); i++) {
+      for (int j = 0; j < getOrder(); j++) {
+        resultingListOfSums.add(elementSum.apply(get(i, j), other.get(i, j)));
+      }
+    }
+    return new Matrix<>(resultingListOfSums);
+  }
+
+  public Matrix<T> product(Matrix<T> other,
+                           BinaryOperator<T> elementSum,
+                           BinaryOperator<T> elementProduct
+  ) {
+    List<T> resultingListOfProducts = new LinkedList<>();
+    for (int i = 0; i < getOrder(); i++) {
+      for (int j = 0; j < getOrder(); j++) {
+        resultingListOfProducts
+                .add(computeIJMatrixProductEntry(i, j, other, elementSum, elementProduct));
+      }
+    }
+    return new Matrix<>(resultingListOfProducts);
+  }
+
+  private T computeIJMatrixProductEntry(int row,
+                                        int column,
+                                        Matrix<T> other,
+                                        BinaryOperator<T> elementSum,
+                                        BinaryOperator<T> elementProduct
+  ) {
+    List<T> products = new LinkedList<>();
+    for (int i = 0; i < getOrder(); i++) {
+      products.add(elementProduct.apply(get(row, i), other.get(i, column)));
+    }
+    return products.stream().reduce(elementSum).get();
   }
 
   @Override
